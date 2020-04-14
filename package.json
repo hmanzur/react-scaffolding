@@ -1,0 +1,26 @@
+{
+  "name": "react-scaffolding",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "create-component": "node scripts/create-component.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hmanzur/react-scaffolding.git"
+  },
+  "author": "hmanzur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hmanzur/react-scaffolding/issues"
+  },
+  "homepage": "https://github.com/hmanzur/react-scaffolding#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "camelcase": "^6.0.0",
+    "@types/node": "^13.11.1"
+  }
+}
