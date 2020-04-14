@@ -1,5 +1,6 @@
 const readline = require('readline');
 const fs = require('fs');
+const path = require('path');
 const camelCase = require('camelcase');
 
 const prompt = readline.createInterface({
@@ -10,22 +11,22 @@ const prompt = readline.createInterface({
 const CURR_DIR = process.cwd();
 
 const createDirectoryContents = (templatePath, destinationPath, appName) => {
-  fs.mkdirSync(destinationPath, {recursive: true});
 
   // read all files/folders (1 level) from template folder
   const filesToCreate = fs.readdirSync(templatePath);
 
   // loop each file/folder
   filesToCreate.forEach(file => {
-    const stats = fs.statSync(destinationPath);
+    const stats = fs.statSync(`${templatePath}/${file}`);
+
+    if (file === 'node_modules') return;
 
     if (stats.isFile()) {
-      const contents = fs.readFileSync(destinationPath, 'utf8');
-      console.log(`Creating ${destinationPath}/${file}...`);
+      const contents = fs.readFileSync(`${templatePath}/${file}`, 'utf8');
 
-      fs.writeFileSync(destinationPath, contents, 'utf8');
+      fs.writeFileSync(`${destinationPath}/${file.replace('appName', appName)}`, contents.replace('appName', appName), 'utf8');
     } else if (stats.isDirectory()) {
-
+      fs.mkdirSync(`${destinationPath}/${file}`, {recursive: true});
       // recursive call
       createDirectoryContents(`${templatePath}/${file}` , `${destinationPath}/${file}`, appName);
     }
@@ -38,6 +39,8 @@ prompt.question("Ingrese nombre del componente: ", name => {
   const filepath = `${CURR_DIR}/template`;
 
   const destinationPath = `${CURR_DIR}/Modules/${camelCase(name, {pascalCase: true})}`;
+
+  fs.mkdirSync(destinationPath, {recursive: true});
 
   createDirectoryContents(filepath, destinationPath, name);
 
