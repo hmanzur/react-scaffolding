@@ -17,10 +17,9 @@
     "url": "https://github.com/hmanzur/react-scaffolding/issues"
   },
   "homepage": "https://github.com/hmanzur/react-scaffolding#readme",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "camelcase": "^6.0.0",
-    "@types/node": "^13.11.1"
+    "@types/node": "^13.13.45",
+    "camelcase": "^6.2.0"
   }
 }
